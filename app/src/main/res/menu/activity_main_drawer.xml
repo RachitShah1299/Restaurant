@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/hom"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/hs"
+        android:title="History" />
+    <item
+        android:id="@+id/nav_ep"
+        android:icon="@drawable/ep"
+        android:title="Edit Profile" />
+    <item
+        android:id="@+id/nav_feedback"
+        android:icon="@drawable/feedback"
+        android:title="Feedback" />
+    <item
+        android:id="@+id/nav_log"
+        android:icon="@drawable/log"
+        android:title="Logout" />
+</menu>

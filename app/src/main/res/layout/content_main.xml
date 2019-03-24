@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_30ssp">
+
+        <!--<android.support.v7.widget.CardView
+            android:id="@+id/c"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            app:cardBackgroundColor="@color/graylight"
+            android:elevation="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_2sdp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/sr"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:text="Sr.no"
+                    android:textSize="@dimen/_16ssp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/fdesc"
+                    android:layout_toRightOf="@+id/sr"
+                    android:layout_width="@dimen/_170sdp"
+                    android:layout_height="wrap_content"
+                    android:text="Food Description"
+                    android:textSize="@dimen/_16ssp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/qt"
+                    android:layout_toRightOf="@+id/fdesc"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:text="Qty(kg/Ltr)"
+                    android:textSize="@dimen/_16ssp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/c1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/c"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:elevation="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="1."
+                    android:textAlignment="center"
+
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/fd"
+                    android:layout_width="@dimen/_170sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv"
+                    android:hint="food Description"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/qty"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/fd"
+                    android:hint="Qty(Kg/Ltr)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/c2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/c1"
+            android:elevation="@dimen/_15sdp"
+            app:cardBackgroundColor="@color/graylight"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="2."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/fd1"
+                    android:layout_width="@dimen/_170sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toRightOf="@+id/tv1"
+                    android:hint="Food Description"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/qty1"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/fd1"
+                    android:hint="Qty(Kg/Ltr)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/c3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/c2"
+            android:elevation="@dimen/_15sdp"
+            app:cardBackgroundColor="@color/graylight"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv2"
+
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="3."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/fd2"
+                    android:layout_width="@dimen/_170sdp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv2"
+                    android:hint="food Description"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/qty2"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/fd2"
+                    android:hint="Qty(Kg/Ltr)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/c4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/c3"
+            android:elevation="@dimen/_15sdp"
+            app:cardBackgroundColor="@color/graylight"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="4."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/fd3"
+                    android:layout_width="@dimen/_170sdp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv3"
+                    android:hint="food Description"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/qty3"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/fd3"
+                    android:hint="Qty(Kg/Ltr)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/c5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/c4"
+            android:elevation="@dimen/_15sdp"
+            app:cardBackgroundColor="@color/graylight"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv4"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="5."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/fd4"
+                    android:layout_width="@dimen/_170sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv4"
+                    android:hint="food Description"
+
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/qty4"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/fd4"
+                    android:hint="Qty(Kg/Ltr)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="@dimen/_160sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/c4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_55sdp"
+            android:background="@color/startblue"
+            android:text="Send Request"
+            android:textColor="@color/graylight" />
+
+      <!--  <android.support.v7.widget.CardView
+            android:id="@+id/cv1"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_95sdp"
+            android:layout_below="@+id/btn"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:elevation="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/startblue"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volunteers"
+                android:textColor="@color/graylight"
+                android:textSize="@dimen/_20ssp" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv2"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_95sdp"
+            android:layout_below="@+id/btn"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_toRightOf="@+id/cv1"
+            android:elevation="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/startblue"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurants"
+                android:textColor="@color/graylight"
+                android:textSize="@dimen/_20ssp" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv3"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_95sdp"
+            android:layout_below="@+id/cv1"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:elevation="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/startblue"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Requests"
+                android:textColor="@color/graylight"
+                android:textSize="@dimen/_20ssp" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv4"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_95sdp"
+            android:layout_below="@+id/cv2"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_toRightOf="@+id/cv3"
+            android:elevation="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/startblue"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicles"
+                android:textColor="@color/graylight"
+                android:textSize="@dimen/_20ssp" />
+        </android.support.v7.widget.CardView>-->
+
+    </RelativeLayout>
+</RelativeLayout>

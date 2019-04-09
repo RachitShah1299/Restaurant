@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,22 +41,22 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     EditText fd, fd1, fd2, fd3, fd4, qty1, qty2, qty3, qty4, qty5;
-    Button submit;
-    DatabaseReference myref, myref2;
+    Button submit, volinfo;
+    DatabaseReference myref, myref2, myref3;
     FirebaseAuth mauth;
-    String volkey, str_name, str_email, location;
+    String str_name, location;
     TextView headeamail, headname;
-    String key, key1, rname;
+    String key, key1,rname, resemail;
     String fod, fod1, fod2, fod3, fod4, qt, qt1, qt2, qt3, qt4;
-    TextView name, email;
-    private SharedPreferences sharedPreferences;
+    TextView name, email, volnames;
+    ArrayList<FoodRequestAcceptance> foodRequestAcceptances;
     ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); //show the activity in full screen
+        /*this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //show the activity in full screen*/
 
         setContentView(R.layout.activity_main);
 
@@ -74,16 +75,13 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         name = (TextView) header.findViewById(R.id.nav_name);
         email = (TextView) header.findViewById(R.id.nav_email);
-
+        volnames = (TextView) findViewById(R.id.vol_name);
+        foodRequestAcceptances = new ArrayList<>();
         imageView = (ImageView) header.findViewById(R.id.header_image);
         imageView.setImageResource(R.drawable.res4);
-        name.setText("Kabir Restaurant");
-        email.setText("mrphantom2311@gmail.com");
-
-        //  setheader();
-
         myref = FirebaseDatabase.getInstance().getReference("Restuarant");
         myref2 = FirebaseDatabase.getInstance().getReference("FoodRequest");
+        myref3 = FirebaseDatabase.getInstance().getReference("FoodRequestAcceptance");
         mauth = FirebaseAuth.getInstance();
         headname = (TextView) findViewById(R.id.nav_name);
         headeamail = (TextView) findViewById(R.id.nav_email);
@@ -98,8 +96,16 @@ public class MainActivity extends AppCompatActivity
         qty4 = (EditText) findViewById(R.id.qty3);
         qty5 = (EditText) findViewById(R.id.qty4);
         submit = (Button) findViewById(R.id.btn);
+        volinfo = (Button) findViewById(R.id.volinfo);
+        SharedPreferences sharedPreferences = getSharedPreferences("Restaurant_log", Context.MODE_PRIVATE);
 
+        resemail = sharedPreferences.getString("Email", "");
 
+/* name.setText("Salim Quershi");
+        email.setText("burgerKhalo67@gmail.com");*/
+
+        setheader();
+        Log.e("Rnameee", "is: " + rname);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,9 +122,7 @@ public class MainActivity extends AppCompatActivity
                 qt2 = qty3.getText().toString().trim();
                 qt3 = qty4.getText().toString().trim();
                 qt4 = qty5.getText().toString().trim();
-                SharedPreferences sharedPreferences = getSharedPreferences("Restaurant", Context.MODE_PRIVATE);
-                key = sharedPreferences.getString("Key", "");
-                rname = sharedPreferences.getString("Rname", "");
+
 
                 Boolean check;
 
@@ -126,10 +130,69 @@ public class MainActivity extends AppCompatActivity
 
                 if (check) {
                     Toast.makeText(MainActivity.this, "Food Request Sent", Toast.LENGTH_SHORT).show();
+
+                    volinfo.setVisibility(v.VISIBLE);
+                    volnames.setVisibility(v.VISIBLE);
                 }
+
 
             }
         });
+
+        volinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myref3.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Date c = Calendar.getInstance().getTime();
+                            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                            String formattedDate = df.format(c);
+
+                            FoodRequestAcceptance users = snapshot.getValue(FoodRequestAcceptance.class);
+                            if (formattedDate.compareTo(users.getFddate()) == 0) {
+                                foodRequestAcceptances.add(users);
+                                volnames.setText(users.getVname());
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
+        myref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Restuarants users = snapshot.getValue(Restuarants.class);
+                    if(resemail.equals(users.getRemail())){
+                        str_name = users.getRname();
+                        Log.e("Email","Email is"+resemail);
+                    }
+                    Log.e("Resname","REsname is"+str_name);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -153,27 +216,25 @@ public class MainActivity extends AppCompatActivity
 
         imageView = (ImageView) header.findViewById(R.id.header_image);
 
-
-        sharedPreferences = getSharedPreferences("Restaurant", Context.MODE_PRIVATE);
-        volkey = sharedPreferences.getString("Key", "");
-        location = sharedPreferences.getString("Address", "");
-
         myref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot snapshot : dataSnapshot.child(volkey).getChildren()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     Restuarants users = snapshot.getValue(Restuarants.class);
+                    if(resemail.equals(users.getRemail())){
+                        str_name = users.getRname();
+                        Log.e("Email","Email is"+resemail);
+                        name.setText(str_name);
+                        email.setText(resemail);
 
-                    str_name = users.getRname();
-                    str_email = users.getRemail();
+                    }
+                    Log.e("Resnaem","REsname is"+str_name);
 
                 }
 
-                headname.setText(str_name);
-                headeamail.setText(str_email);
-            }
+               }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -181,7 +242,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        imageView.setImageURI(Uri.parse(sharedPreferences.getString("Profile", "???")));
+//        imageView.setImageURI(Uri.parse(sharedPreferences.getString("Profile", "???")));
 
     }
 
@@ -234,14 +295,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_ep) {
-            Toast toast = Toast.makeText(this, "EditProfile", Toast.LENGTH_LONG);
-            toast.show();
+            //  Toast toast = Toast.makeText(this, "EditProfile", Toast.LENGTH_LONG);
+            //toast.show();
             Intent intent = new Intent(MainActivity.this, res_profile.class);
             startActivity(intent);
 
 
         } else if (id == R.id.nav_feedback) {
-            Toast.makeText(MainActivity.this, "Feedback", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Feedback", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, res_feedback.class);
             startActivity(intent);
 
@@ -276,7 +337,8 @@ public class MainActivity extends AppCompatActivity
 
                     FoodRequest foodRequest = new FoodRequest();
                     foodRequest.setKey(key1);
-                    foodRequest.setRname(rname);
+                    foodRequest.setRname(str_name);
+
                     foodRequest.setAddress(location);
                     foodRequest.setdesc(desc);
                     foodRequest.setFddate(formattedDate);
@@ -307,7 +369,7 @@ public class MainActivity extends AppCompatActivity
 
                                 FoodRequest foodRequest = new FoodRequest();
                                 foodRequest.setKey(key1);
-                                foodRequest.setRname(rname);
+                                foodRequest.setRname(str_name);
                                 foodRequest.setAddress(location);
                                 foodRequest.setdesc(desc);
                                 foodRequest.setFddate(formattedDate);
@@ -338,7 +400,7 @@ public class MainActivity extends AppCompatActivity
 
                                             FoodRequest foodRequest = new FoodRequest();
                                             foodRequest.setKey(key1);
-                                            foodRequest.setRname(rname);
+                                            foodRequest.setRname(str_name);
                                             foodRequest.setAddress(location);
                                             foodRequest.setdesc(desc);
                                             foodRequest.setFddate(formattedDate);
@@ -369,7 +431,7 @@ public class MainActivity extends AppCompatActivity
 
                                                         FoodRequest foodRequest = new FoodRequest();
                                                         foodRequest.setKey(key1);
-                                                        foodRequest.setRname(rname);
+                                                        foodRequest.setRname(str_name);
                                                         foodRequest.setAddress(location);
                                                         foodRequest.setdesc(desc);
                                                         foodRequest.setFddate(formattedDate);
@@ -400,7 +462,7 @@ public class MainActivity extends AppCompatActivity
 
                                                                 FoodRequest foodRequest = new FoodRequest();
                                                                 foodRequest.setKey(key1);
-                                                                foodRequest.setRname(rname);
+                                                                foodRequest.setRname(str_name);
                                                                 foodRequest.setAddress(location);
                                                                 foodRequest.setdesc(desc);
                                                                 foodRequest.setFddate(formattedDate);

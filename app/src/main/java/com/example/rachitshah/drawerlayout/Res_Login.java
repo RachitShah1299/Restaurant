@@ -1,6 +1,8 @@
 package com.example.rachitshah.drawerlayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,8 +24,8 @@ import java.util.regex.Pattern;
 
 public class Res_Login extends AppCompatActivity {
     TextView lin, fpass, signup;
-    String email,passwrd;
-    EditText username,password;
+    String email, passwrd;
+    EditText username, password;
     String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
     FirebaseAuth mauth;
     FirebaseAuth.AuthStateListener mauthListener;
@@ -33,16 +35,15 @@ public class Res_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+     /*   this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //show the activity in full screen
-
+*/
 
         setContentView(R.layout.activity_res__login);
 
 
-
-        username = (EditText)  findViewById(R.id.usrusr);
-        password = (EditText)findViewById(R.id.pswrdd);
+        username = (EditText) findViewById(R.id.usrusr);
+        password = (EditText) findViewById(R.id.pswrdd);
         fpass = findViewById(R.id.res_forg_pass);
         lin = findViewById(R.id.lin);
         mauth = FirebaseAuth.getInstance();
@@ -51,13 +52,11 @@ public class Res_Login extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //Intent it = new Intent(Res_Login.this, MainActivity.class);
                 //startActivity(it);
-                Toast.makeText(Res_Login.this,"Hiii",Toast.LENGTH_SHORT).show();
-
-            }
+//                Toast.makeText(Res_Login.this,"Hi",Toast.LENGTH_SHORT).show();
+                    }
         };
 
         signup = findViewById(R.id.sup);
-
 
 
         lin.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +110,7 @@ public class Res_Login extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent  = new Intent(Res_Login.this, Res_Signup.class);
+                Intent intent = new Intent(Res_Login.this, Res_Signup.class);
                 startActivity(intent);
 
             }
@@ -120,19 +119,18 @@ public class Res_Login extends AppCompatActivity {
 
     }
 
-    private void signin(){
-        mauth.signInWithEmailAndPassword(email,passwrd).addOnCompleteListener(Res_Login.this, new OnCompleteListener<AuthResult>() {
+    private void signin() {
+        mauth.signInWithEmailAndPassword(email, passwrd).addOnCompleteListener(Res_Login.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(passwrd)) {
-                    Toast.makeText(Res_Login.this,"Fields are empty",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    if(!task.isSuccessful()){
-                        Log.e("Resaaa","Check" + email);
-                        Toast.makeText(Res_Login .this,"Invalid Email",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    Toast.makeText(Res_Login.this, "Fields are empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (!task.isSuccessful()) {
+                        Log.e("Resaaa", "Check" + email);
+                        Toast.makeText(Res_Login.this, "Invalid Credentials, Please try again", Toast.LENGTH_SHORT).show();
+                    } else {
+                        savedata();
                         Intent it = new Intent(Res_Login.this, MainActivity.class);
                         startActivity(it);
 
@@ -151,4 +149,12 @@ public class Res_Login extends AppCompatActivity {
     }
 
 
+    private void savedata() {
+        SharedPreferences sharedPreferences = getSharedPreferences("Restaurant_log", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Log.e("Email","Email is"+ email);
+        editor.putString("Email", email);
+        editor.commit();
+
+    }
 }

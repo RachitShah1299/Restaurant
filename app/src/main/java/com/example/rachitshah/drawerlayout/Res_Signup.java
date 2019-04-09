@@ -42,9 +42,9 @@ public class Res_Signup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        /*this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //show the activity in full screen
-
+*/
         setContentView(R.layout.activity_res__signup);
 
         mauth= FirebaseAuth.getInstance();
@@ -173,7 +173,7 @@ public class Res_Signup extends AppCompatActivity {
             check = false;
         }
         if (ph.length() != 10) {
-            mono.setError("Phone cannot be Empty");
+            mono.setError("Phone No not Valid");
             check = false;
         }
         if (add.length() == 0) {

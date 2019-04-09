@@ -89,7 +89,7 @@
                     android:layout_width="@dimen/_170sdp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tv"
-                    android:hint="food Description"
+                    android:hint="Food Description"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -180,7 +180,7 @@
 
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tv2"
-                    android:hint="food Description"
+                    android:hint="Food Description"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -225,7 +225,7 @@
 
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tv3"
-                    android:hint="food Description"
+                    android:hint="Food Description"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -269,7 +269,7 @@
                     android:layout_width="@dimen/_170sdp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tv4"
-                    android:hint="food Description"
+                    android:hint="Food Description"
 
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
@@ -375,4 +375,25 @@
         </android.support.v7.widget.CardView>-->
 
     </RelativeLayout>
+    <Button
+        android:id="@+id/volinfo"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/c5"
+        android:text="Volunteer Info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_285sdp"
+        android:visibility="invisible"
+        android:background="@color/startblue"
+        android:textColor="@color/graylight"
+        tools:ignore="NotSibling" />
+
+    <TextView
+        android:id="@+id/vol_name"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/volinfo"
+        android:visibility="invisible"
+        />
+
 </RelativeLayout>

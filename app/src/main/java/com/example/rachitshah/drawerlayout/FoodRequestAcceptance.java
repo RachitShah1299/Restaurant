@@ -1,7 +1,7 @@
 package com.example.rachitshah.drawerlayout;
 
 class FoodRequestAcceptance {
-    String key,vname,rname,loc,status,fddate;
+    String key,vname,rname,loc,status,fddate,frid;
     public String getKey() {
         return key;
     }
@@ -46,5 +46,14 @@ class FoodRequestAcceptance {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getFrid() {
+        return frid;
+    }
+
+    public void setFrid(String frid) {
+        this.frid = frid;
+    }
+
 
 }

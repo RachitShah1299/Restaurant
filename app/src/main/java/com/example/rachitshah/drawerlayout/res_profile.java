@@ -59,8 +59,10 @@ public class res_profile extends AppCompatActivity implements NavigationView.OnN
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+/*
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //show the activity in full screen
+*/
 
         setContentView(R.layout.activity_res_profile);
 
@@ -74,7 +76,7 @@ public class res_profile extends AppCompatActivity implements NavigationView.OnN
         password = (EditText) findViewById(R.id.password);
         img = (ImageView) findViewById(R.id.profile);
         save = (Button) findViewById(R.id.save);
-        back = (ImageView) findViewById(R.id.bcbtn);
+        back = (ImageView) findViewById(R.id.backbtn);
 
         /*imageView.setOnClickListener(new View.OnClickListener() {
             @Override
